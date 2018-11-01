@@ -52,11 +52,13 @@ export default class ModalDialog extends React.Component {
     recenter: PropTypes.func.isRequired,
     top: PropTypes.number,
     dismissOnBackgroundClick: PropTypes.bool,
+    showCloseButton: PropTypes.bool,
   }
   static defaultProps = {
     width: 'auto',
     margin: 20,
     dismissOnBackgroundClick: true,
+    showCloseButton: true,
   }
   componentWillMount = () => {
     /**
@@ -158,6 +160,7 @@ export default class ModalDialog extends React.Component {
         topOffset,
         width,
         dismissOnBackgroundClick,
+        showCloseButton,
         ...rest,
       },
     } = this;
@@ -179,7 +182,7 @@ export default class ModalDialog extends React.Component {
       style={dialogStyle}
     >
       {
-        onClose ?
+        onClose && showCloseButton ?
         <a className={inject(styles.closeButton)} onClick={onClose}>
           <CloseCircle diameter={40}/>
         </a> :
